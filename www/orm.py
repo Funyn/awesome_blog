@@ -12,7 +12,7 @@ async def create_pool(loop,**kwargs):
     global __pool
     __pool = await aiomysql.create_pool(
         host = kwargs.get('host','localhost'),
-        port = kwargs.get('port','3306'),
+        port = kwargs.get('port',3306),
         user = kwargs['user'],
         password = kwargs['password'],
         db = kwargs['db'],
@@ -121,9 +121,9 @@ class ModelMetaclass(type):
         for k in mappings.keys():
             attrs.pop(k)
         esacped_fields = list(map(lambda f:"`%s`"%f,fields))
-        attrs['__mapping__'] = mappings
+        attrs['__mappings__'] = mappings
         attrs['__table__'] = tableName
-        attrs['__primary_key'] = primaryKey
+        attrs['__primary_key__'] = primaryKey
         attrs['__fields__'] = fields
         attrs['__select__'] = "select `%s`,%s from `%s`"%(primaryKey,', '.join(esacped_fields),tableName)
         attrs['__insert__'] = 'insert into `%s` (%s, `%s`) values (%s)'%(tableName,', '.join(esacped_fields),primaryKey,create_args_string(len(esacped_fields)+1))
