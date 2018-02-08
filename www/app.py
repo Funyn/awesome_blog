@@ -11,6 +11,7 @@ from datetime import datetime
 from aiohttp import web
 from www.orm import create_pool
 from www.models import User
+<<<<<<< HEAD
 from jinja2 import Environment,FileSystemLoader
 import www.orm
 from www.coroweb import add_routes,add_static
@@ -103,6 +104,14 @@ def datetime_filter(t):
         return '%s天前'%(delta//86400)
     dt = datetime.fromtimestamp(t)
     return '%s年%s月%s日'%(dt.year,dt.month,dt.day)
+=======
+
+
+
+def index(request):
+    print(request)
+    return web.Response(body='awesome')
+>>>>>>> 88459f4defc20088a7130e925866683e3bf94f9b
 
 async def init(loop):
     await create_pool(loop,user='root',password='123456',db='fyf')
@@ -114,6 +123,9 @@ async def init(loop):
     add_static(app)
     srv = await loop.create_server(app.make_handler(),'127.0.0.1',9000)
     logging.info('server started at http://127.0.0.1:9000')
+    await create_pool(loop,user='root',password='123456',db='fyf')
+    user = User(name='Test', email='test@example.com', passwd='1234567890', image='about:blank')
+    await user.save()
     return srv
 
 loop = asyncio.get_event_loop()
