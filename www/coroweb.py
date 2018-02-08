@@ -90,6 +90,7 @@ class RequestHandler(object):
         self._required_kw_args = get_required_kw_args(fn)
 
     async def __call__(self,request):
+        # self.request = request
         kw = None
         if self._has_var_kw_arg or self._has_named_kw_args or self._required_kw_args:
             if request.method == 'POST':
@@ -150,8 +151,9 @@ def add_static(app):
     logging.info('add static %s => %s'%('/static/',path))
 
 def add_route(app,fn):
+    global routes
     method = getattr(fn,'__method__',None)
-    path = getattr(fn,'__method__',None)
+    path = getattr(fn,'__route__',None)
     if path is None or method is None:
         raise ValueError('@get or @post not defined in %s'%str(fn))
     if not asyncio.iscoroutinefunction(fn) and not inspect.isgeneratorfunction(fn):
