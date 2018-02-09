@@ -22,7 +22,6 @@ def get(path):
         return wrapper
     return decorator
 
-
 def post(path):
     """
     定义一个@post('/path')装饰器
@@ -140,6 +139,7 @@ class RequestHandler(object):
                     return web.HTTPBadRequest()
         logging.info('call with args:%s'%str(kw))
         try:
+            kw['request'] = request
             r = await  self._func(**kw)
             return r
         except APIError as e:
@@ -151,7 +151,6 @@ def add_static(app):
     logging.info('add static %s => %s'%('/static/',path))
 
 def add_route(app,fn):
-    global routes
     method = getattr(fn,'__method__',None)
     path = getattr(fn,'__route__',None)
     if path is None or method is None:
