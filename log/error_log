@@ -1,0 +1,1 @@
+2018/02/14 14:27:55 [error] 29307#29307: *1 open() "/srv/awesome_blog/www/favicon.ico" failed (2: No such file or directory), client: 192.168.28.1, server: losser.fyf.com, request: "GET /favicon.ico HTTP/1.1", host: "192.168.28.129", referrer: "http://192.168.28.129/"

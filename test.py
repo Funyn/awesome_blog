@@ -1,3 +1,12 @@
 #coding:utf-8
-print('hello')
-print('world')
+import inspect
+
+def get_kw(fn):
+    params = inspect.signature(fn).parameters
+    print(params)
+
+def a(aaaa,bwww,ccccc='wwww'):
+    return True
+
+
+

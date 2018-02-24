@@ -1,0 +1,2159 @@
+INFO:root:found model:User(table:users)
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:image==><StringField,varchar(500):None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:admin==><BooleanField,boolean:None>
+INFO:root:found mapping:passwd==><StringField,varchar(50):None>
+INFO:root:found mapping:email==><StringField,varchar(50):None>
+INFO:root:found model:Blog(table:blogs)
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(500):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:summary==><StringField,varchar(200):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found model:Comment(table:comments)
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:blog_id==><StringField,varchar(50):None>
+INFO:root: create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path /srv/awesome_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_comment(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage => manage()
+INFO:root:add route GET /manage/blogs => manage_blog(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome_blog/www/static
+INFO:root:server started at http://0.0.0.0:9000
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:38:01 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:check user:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255780749d7e95739ebfb4b6daafefe766faeb646000'}
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `user_id`, `content`, `user_name`, `blog_id` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:38:16 +0000] "GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000 HTTP/1.1" 200 6858 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:39:51 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:39:57 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:check user:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255780749d7e95739ebfb4b6daafefe766faeb646000'}
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `user_id`, `content`, `user_name`, `blog_id` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:25 +0000] "GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000 HTTP/1.1" 200 6858 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:check user:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255780749d7e95739ebfb4b6daafefe766faeb646000'}
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `user_id`, `content`, `user_name`, `blog_id` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000 HTTP/1.1" 200 6858 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/css/uikit.min.css
+INFO:root:check user:GET /static/css/uikit.min.css
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:Request:GET /static/css/uikit.gradient.min.css
+INFO:root:check user:GET /static/css/uikit.gradient.min.css
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/css/uikit.min.css HTTP/1.1" 200 105600 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/js/uikit.min.js
+INFO:root:check user:GET /static/js/uikit.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.1" 200 114656 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/css/awesome.css HTTP/1.1" 200 391 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 200 4506 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 200 93224 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 200 2450 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/js/vue.min.js HTTP/1.1" 200 56713 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/js/uikit.min.js HTTP/1.1" 200 56987 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/js/awesome.js HTTP/1.1" 200 14798 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:39 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.1" 200 77360 "http://192.168.28.129:9000/static/css/uikit.min.css" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:check user:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255780749d7e95739ebfb4b6daafefe766faeb646000'}
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `user_id`, `content`, `user_name`, `blog_id` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000 HTTP/1.1" 200 6858 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/css/uikit.min.css
+INFO:root:check user:GET /static/css/uikit.min.css
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/css/uikit.gradient.min.css
+INFO:root:check user:GET /static/css/uikit.gradient.min.css
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/js/uikit.min.js
+INFO:root:check user:GET /static/js/uikit.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/css/uikit.min.css HTTP/1.1" 200 105600 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.1" 200 114656 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/css/awesome.css HTTP/1.1" 200 391 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 200 93224 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 200 4506 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/js/uikit.min.js HTTP/1.1" 200 56987 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 200 2450 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/js/vue.min.js HTTP/1.1" 200 56713 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/js/awesome.js HTTP/1.1" 200 14798 "http://192.168.28.129:9000/blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:40:40 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.1" 200 77360 "http://192.168.28.129:9000/static/css/uikit.min.css" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET / HTTP/1.1" 200 6234 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.min.css
+INFO:root:check user:GET /static/css/uikit.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET /static/css/uikit.min.css HTTP/1.1" 200 105600 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.gradient.min.css
+INFO:root:check user:GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler ...
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET /static/css/awesome.css HTTP/1.1" 200 391 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:Response handler ...
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 200 4506 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.1" 200 114656 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/uikit.min.js
+INFO:root:check user:GET /static/js/uikit.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET /static/js/uikit.min.js HTTP/1.1" 200 56987 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 200 93224 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 200 2450 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:46 +0000] "GET /static/js/vue.min.js HTTP/1.1" 200 56713 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:47 +0000] "GET /static/js/awesome.js HTTP/1.1" 200 14798 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:41:47 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.1" 200 77360 "http://192.168.28.129:9000/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:04:43:51 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage
+INFO:root:check user:GET /manage
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:10:37 +0000] "GET /manage HTTP/1.1" 302 190 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:10:37 +0000] "GET /manage/blogs HTTP/1.1" 200 6128 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:10:37 +0000] "GET /api/blogs?page=1 HTTP/1.1" 200 2321 "http://192.168.28.129:9000/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000
+INFO:root:check user:GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518254630254c4293492d77843869434bb3bad5f361f000'}
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `user_id`, `content`, `user_name`, `blog_id` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:10:42 +0000] "GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000 HTTP/1.1" 200 6284 "http://192.168.28.129:9000/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000
+INFO:root:check user:GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000'}
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `user_id`, `content`, `user_name`, `blog_id` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:10:55 +0000] "GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000 HTTP/1.1" 200 6274 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000
+INFO:root:check user:GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000'}
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `user_id`, `content`, `user_name`, `blog_id` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:10:59 +0000] "GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000 HTTP/1.1" 200 6274 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000
+INFO:root:check user:GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000'}
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `user_id`, `content`, `user_name`, `blog_id` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:11:02 +0000] "GET /blog/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000 HTTP/1.1" 200 6274 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:29:09 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:34:51 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:37:39 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`created_at`, `image`, `name`, `admin`, `passwd`, `email` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`created_at`, `user_image`, `name`, `user_id`, `summary`, `user_name`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:05:37:45 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:found model:User(table:users)
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:email==><StringField,varchar(50):None>
+INFO:root:found mapping:image==><StringField,varchar(500):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:admin==><BooleanField,boolean:None>
+INFO:root:found mapping:passwd==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found model:Blog(table:blogs)
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:summary==><StringField,varchar(200):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(500):None>
+INFO:root:found model:Comment(table:comments)
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:blog_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(50):None>
+INFO:root: create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path /srv/awesome_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_comment(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage => manage()
+INFO:root:add route GET /manage/blogs => manage_blog(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome_blog/www/static
+INFO:root:server started at http://0.0.0.0:9000
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:06:18:17 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:06:27:51 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET / HTTP/1.0" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/css/uikit.min.css
+INFO:root:check user:GET /static/css/uikit.min.css
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:Request:GET /static/css/uikit.gradient.min.css
+INFO:root:check user:GET /static/css/uikit.gradient.min.css
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/css/uikit.min.css HTTP/1.0" 200 105600 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:Request:GET /static/js/uikit.min.js
+INFO:root:check user:GET /static/js/uikit.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.0" 200 114656 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/css/awesome.css HTTP/1.0" 200 391 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/js/jquery.min.js HTTP/1.0" 200 93224 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/js/sha1.min.js HTTP/1.0" 200 4506 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/js/uikit.min.js HTTP/1.0" 200 56987 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/js/sticky.min.js HTTP/1.0" 200 2450 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/js/vue.min.js HTTP/1.0" 200 56713 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/js/awesome.js HTTP/1.0" 200 14798 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:27:55 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.0" 200 77360 "http://192.168.28.129/static/css/uikit.min.css" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:28:15 +0000] "GET / HTTP/1.0" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET / HTTP/1.0" 200 6234 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.min.css
+INFO:root:check user:GET /static/css/uikit.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/css/uikit.min.css HTTP/1.0" 200 105600 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/js/sha1.min.js HTTP/1.0" 200 4506 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.gradient.min.css
+INFO:root:check user:GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.0" 200 114656 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/css/awesome.css HTTP/1.0" 200 391 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/uikit.min.js
+INFO:root:check user:GET /static/js/uikit.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/js/uikit.min.js HTTP/1.0" 200 56987 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/js/jquery.min.js HTTP/1.0" 200 93224 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/js/sticky.min.js HTTP/1.0" 200 2450 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/js/vue.min.js HTTP/1.0" 200 56713 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/js/awesome.js HTTP/1.0" 200 14798 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:29:12 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.0" 200 77360 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:31:37 +0000] "GET / HTTP/1.0" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:check user:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255780749d7e95739ebfb4b6daafefe766faeb646000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:31:38 +0000] "GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000 HTTP/1.0" 200 6858 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000
+INFO:root:check user:GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518254630254c4293492d77843869434bb3bad5f361f000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:37:26 +0000] "GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000 HTTP/1.0" 200 6284 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage
+INFO:root:check user:GET /manage
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:37:45 +0000] "GET /manage HTTP/1.0" 302 190 "http://192.168.28.129/blog/001518254630254c4293492d77843869434bb3bad5f361f000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:37:45 +0000] "GET /manage/blogs HTTP/1.0" 200 6128 "http://192.168.28.129/blog/001518254630254c4293492d77843869434bb3bad5f361f000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:37:45 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2321 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000
+INFO:root:check user:GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518254630254c4293492d77843869434bb3bad5f361f000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:38:02 +0000] "GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000 HTTP/1.0" 200 6284 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /signout
+INFO:root:check user:GET /signout
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'request': <Request GET /signout >}
+INFO:root:user signed out
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:40:48 +0000] "GET /signout HTTP/1.0" 302 316 "http://192.168.28.129/blog/001518254630254c4293492d77843869434bb3bad5f361f000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000
+INFO:root:check user:GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518254630254c4293492d77843869434bb3bad5f361f000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+ERROR:aiohttp.server:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/aiohttp/web_protocol.py", line 416, in start
+    resp = yield from self._request_handler(request)
+  File "/usr/local/lib/python3.5/dist-packages/aiohttp/web.py", line 325, in _handle
+    resp = yield from handler(request)
+  File "/usr/local/lib/python3.5/dist-packages/aiohttp/web_middlewares.py", line 93, in impl
+    return (yield from handler(request))
+  File "/srv/awesome_blog/www/app.py", line 41, in logger
+    return (await  handler(request))
+  File "/srv/awesome_blog/www/app.py", line 56, in auth
+    return (await handler(request))
+  File "/srv/awesome_blog/www/app.py", line 94, in response
+    resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8'))
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/srv/awesome_blog/www/templates/blog_detail.html", line 1, in top-level template code
+    {% extends '__base__.html' %}
+  File "/srv/awesome_blog/www/templates/__base__.html", line 50, in top-level template code
+    {% block content %}
+  File "/srv/awesome_blog/www/templates/blog_detail.html", line 85, in block "content"
+    <p>你来这已经：{{ __user__.created_at|datetime }}</p>
+  File "/srv/awesome_blog/www/app.py", line 109, in datetime_filter
+    delta = int(time.time() - t)
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'created_at'
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:40:48 +0000] "GET /blog/001518254630254c4293492d77843869434bb3bad5f361f000 HTTP/1.0" 500 312 "http://192.168.28.129/blog/001518254630254c4293492d77843869434bb3bad5f361f000" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:41:03 +0000] "GET / HTTP/1.0" 200 6234 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /signin
+INFO:root:check user:GET /signin
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:41:05 +0000] "GET /signin HTTP/1.0" 200 2935 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /signin
+INFO:root:check user:GET /signin
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:45:25 +0000] "GET /signin HTTP/1.0" 200 2935 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:45:30 +0000] "GET / HTTP/1.0" 200 6234 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage
+INFO:root:check user:GET /manage
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:45:40 +0000] "GET /manage HTTP/1.0" 302 190 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:45:40 +0000] "GET /manage/blogs HTTP/1.0" 302 184 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /signin
+INFO:root:check user:GET /signin
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:45:40 +0000] "GET /signin HTTP/1.0" 200 2935 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:45:45 +0000] "GET / HTTP/1.0" 200 6234 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /signin
+INFO:root:check user:GET /signin
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:54 +0000] "GET /signin HTTP/1.0" 200 2935 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.min.css
+INFO:root:check user:GET /static/css/uikit.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:55 +0000] "GET /static/css/uikit.min.css HTTP/1.0" 200 105600 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.gradient.min.css
+INFO:root:check user:GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:55 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.0" 200 114656 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:55 +0000] "GET /static/js/jquery.min.js HTTP/1.0" 200 93224 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:55 +0000] "GET /static/js/sha1.min.js HTTP/1.0" 200 4506 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/uikit.min.js
+INFO:root:check user:GET /static/js/uikit.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:55 +0000] "GET /static/js/uikit.min.js HTTP/1.0" 200 56987 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:55 +0000] "GET /static/js/vue.min.js HTTP/1.0" 200 56713 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:55 +0000] "GET /static/js/awesome.js HTTP/1.0" 200 14798 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:47:57 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.0" 200 77360 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /signin
+INFO:root:check user:GET /signin
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:48:28 +0000] "GET /signin HTTP/1.0" 200 2935 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:06:48:28 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.0" 200 77360 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [14/Feb/2018:08:18:56 +0000] "GET / HTTP/1.1" 200 6234 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:00 +0000] "GET / HTTP/1.0" 200 6234 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /signin
+INFO:root:check user:GET /signin
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:21 +0000] "GET /signin HTTP/1.0" 200 2935 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/authenticate
+INFO:root:check user:POST /api/authenticate
+INFO:root:Response handler ...
+INFO:root:call with args:{'email': '461547449@qq.com', 'passwd': 'a4785440f8619ce2859f3f2cceb1d3ec573ce0e0'}
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where email=?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:25 +0000] "POST /api/authenticate HTTP/1.0" 200 564 "http://192.168.28.129/signin" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:25 +0000] "GET / HTTP/1.0" 200 6541 "http://192.168.28.129/signin" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage
+INFO:root:check user:GET /manage
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:29 +0000] "GET /manage HTTP/1.0" 302 190 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:29 +0000] "GET /manage/blogs HTTP/1.0" 200 6128 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:29 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2321 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs/create
+INFO:root:check user:GET /manage/blogs/create
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:32 +0000] "GET /manage/blogs/create HTTP/1.0" 200 6556 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:36 +0000] "GET /manage/blogs HTTP/1.0" 200 6128 "http://192.168.28.129/manage/blogs/create" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:36 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2321 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/users
+INFO:root:check user:GET /manage/users
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:37 +0000] "GET /manage/users HTTP/1.0" 200 5390 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/users
+INFO:root:check user:GET /api/users
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `users`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` order by created_at desc limit ?, ?
+INFO:root:rows returned: 2
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:37 +0000] "GET /api/users?page=1 HTTP/1.0" 200 772 "http://192.168.28.129/manage/users" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:39 +0000] "GET /manage/blogs HTTP/1.0" 200 6128 "http://192.168.28.129/manage/users" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:39 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2321 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/comments
+INFO:root:check user:GET /manage/comments
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:41 +0000] "GET /manage/comments HTTP/1.0" 200 5998 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/comments
+INFO:root:check user:GET /api/comments
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `comments`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:41 +0000] "GET /api/comments?page=1 HTTP/1.0" 200 693 "http://192.168.28.129/manage/comments" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/users
+INFO:root:check user:GET /manage/users
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:47 +0000] "GET /manage/users HTTP/1.0" 200 5390 "http://192.168.28.129/manage/comments" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/users
+INFO:root:check user:GET /api/users
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `users`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` order by created_at desc limit ?, ?
+INFO:root:rows returned: 2
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:47 +0000] "GET /api/users?page=1 HTTP/1.0" 200 772 "http://192.168.28.129/manage/users" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:50 +0000] "GET /manage/blogs HTTP/1.0" 200 6128 "http://192.168.28.129/manage/users" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:19:50 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2321 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs/create
+INFO:root:check user:GET /manage/blogs/create
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:20:05 +0000] "GET /manage/blogs/create HTTP/1.0" 200 6556 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:20:20 +0000] "GET / HTTP/1.0" 200 6541 "http://192.168.28.129/manage/users" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:check user:GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255780749d7e95739ebfb4b6daafefe766faeb646000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:20:28 +0000] "GET /blog/001518255780749d7e95739ebfb4b6daafefe766faeb646000 HTTP/1.0" 200 6858 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET / HTTP/1.0" 200 6234 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.min.css
+INFO:root:check user:GET /static/css/uikit.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/css/uikit.min.css HTTP/1.0" 200 105600 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.gradient.min.css
+INFO:root:check user:GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.0" 200 114656 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/css/awesome.css HTTP/1.0" 200 391 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/js/jquery.min.js HTTP/1.0" 200 93224 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/js/sha1.min.js HTTP/1.0" 200 4506 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/uikit.min.js
+INFO:root:check user:GET /static/js/uikit.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/js/uikit.min.js HTTP/1.0" 200 56987 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/js/sticky.min.js HTTP/1.0" 200 2450 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/js/vue.min.js HTTP/1.0" 200 56713 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/js/awesome.js HTTP/1.0" 200 14798 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:28 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.0" 200 77360 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /signin
+INFO:root:check user:GET /signin
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:32 +0000] "GET /signin HTTP/1.0" 200 2935 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:POST /api/authenticate
+INFO:root:check user:POST /api/authenticate
+INFO:root:Response handler ...
+INFO:root:call with args:{'email': '461547449@qq.com', 'passwd': 'a4785440f8619ce2859f3f2cceb1d3ec573ce0e0'}
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where email=?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:53 +0000] "POST /api/authenticate HTTP/1.0" 200 564 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:23:53 +0000] "GET / HTTP/1.0" 200 6541 "http://192.168.28.129/signin" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:05 +0000] "GET / HTTP/1.0" 200 6541 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET / HTTP/1.0" 200 6234 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.min.css
+INFO:root:check user:GET /static/css/uikit.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/css/uikit.min.css HTTP/1.0" 200 105600 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/uikit.gradient.min.css
+INFO:root:check user:GET /static/css/uikit.gradient.min.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/css/uikit.gradient.min.css HTTP/1.0" 200 114656 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/css/awesome.css HTTP/1.0" 200 391 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/js/jquery.min.js HTTP/1.0" 200 93224 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/js/sha1.min.js HTTP/1.0" 200 4506 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/uikit.min.js
+INFO:root:check user:GET /static/js/uikit.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/js/uikit.min.js HTTP/1.0" 200 56987 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/js/sticky.min.js HTTP/1.0" 200 2450 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/js/vue.min.js HTTP/1.0" 200 56713 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:22 +0000] "GET /static/js/awesome.js HTTP/1.0" 200 14798 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:23 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.0" 200 77360 "http://192.168.28.129/" "Mozilla/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 Mobile/14B150 Safari/602.1"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [14/Feb/2018:08:24:42 +0000] "GET / HTTP/1.0" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:192.168.28.1 [15/Feb/2018:03:11:45 +0000] "GET / HTTP/1.1" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [15/Feb/2018:03:11:45 +0000] "GET /static/js/sha1.min.js HTTP/1.1" 304 141 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [15/Feb/2018:03:11:45 +0000] "GET /static/css/awesome.css HTTP/1.1" 304 141 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [15/Feb/2018:03:11:45 +0000] "GET /static/js/jquery.min.js HTTP/1.1" 304 141 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [15/Feb/2018:03:11:45 +0000] "GET /static/js/sticky.min.js HTTP/1.1" 304 141 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [15/Feb/2018:03:11:45 +0000] "GET /static/js/vue.min.js HTTP/1.1" 304 141 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:192.168.28.1 [15/Feb/2018:03:11:45 +0000] "GET /static/js/awesome.js HTTP/1.1" 304 141 "http://192.168.28.129:9000/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:47 +0000] "GET / HTTP/1.0" 200 6541 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:47 +0000] "GET /static/css/awesome.css HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:47 +0000] "GET /static/js/jquery.min.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:47 +0000] "GET /static/js/sha1.min.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:47 +0000] "GET /static/js/sticky.min.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:47 +0000] "GET /static/js/vue.min.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:47 +0000] "GET /static/js/awesome.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage
+INFO:root:check user:GET /manage
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:53 +0000] "GET /manage HTTP/1.0" 302 190 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:53 +0000] "GET /manage/blogs HTTP/1.0" 200 6128 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:53 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2321 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs/create
+INFO:root:check user:GET /manage/blogs/create
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:11:54 +0000] "GET /manage/blogs/create HTTP/1.0" 200 6556 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/blogs
+INFO:root:check user:POST /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'request': <Request POST /api/blogs >, 'name': 'Secure CRT 远程链接阿里云服务器', 'summary': '链接阿里云服务器注意事项：\n1.测试你的ECS是否能连上公网，例:ping www.baidu.com\n2.主机名填写：服务器实例的公网ip地址，在实例界面就可以查看\n附上阿里云liunx服务器链接教程：https://help.aliyun.com/document_detail/25434.html?spm=a2c4g.11186623.6.610.jqJZIU#linux', 'content': '  最近想让自己的博客网站上线，就去购买了阿里云的服务器，在使用SecureCRT远程链接阿里云的linux服务器的遇到了问题，先记录下来，防止以后还浪费时间去翻找同样的资料...,发现不同的问题时会及时更新\nSSH error:a public key file has not been specified by this session 对应的解决方法\n转载：publick_key的问题：http://blog.csdn.net/leetone123/article/details/78273613'}
+INFO:root:SQL: insert into `blogs` (`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image`, `id`) values (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:29 +0000] "POST /api/blogs HTTP/1.0" 200 1291 "http://192.168.28.129/manage/blogs/create" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs/001518664949024f03a77ee5d7c41a382b852f5631b4834000
+INFO:root:check user:GET /api/blogs/001518664949024f03a77ee5d7c41a382b852f5631b4834000
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518664949024f03a77ee5d7c41a382b852f5631b4834000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:29 +0000] "GET /api/blogs/001518664949024f03a77ee5d7c41a382b852f5631b4834000 HTTP/1.0" 200 1289 "http://192.168.28.129/manage/blogs/create" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 7
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:39 +0000] "GET / HTTP/1.0" 200 7327 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage
+INFO:root:check user:GET /manage
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:48 +0000] "GET /manage HTTP/1.0" 302 190 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:48 +0000] "GET /manage/blogs HTTP/1.0" 200 6128 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 7
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:48 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 3453 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/blogs/001518255780749d7e95739ebfb4b6daafefe766faeb646000/delete
+INFO:root:check user:POST /api/blogs/001518255780749d7e95739ebfb4b6daafefe766faeb646000/delete
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255780749d7e95739ebfb4b6daafefe766faeb646000', 'request': <Request POST /api/blogs/001518255780749d7e95739ebfb4b6daafefe766faeb646000/delete >}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: delete from `blogs` where `id`=?
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:53 +0000] "POST /api/blogs/001518255780749d7e95739ebfb4b6daafefe766faeb646000/delete HTTP/1.0" 200 217 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:53 +0000] "GET /manage/blogs?t=1518664977949 HTTP/1.0" 200 6128 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 6
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:53 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 3120 "http://192.168.28.129/manage/blogs?t=1518664977949" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/blogs/001518255726922a72e4d23b455444c92892619a0dbd0ac000/delete
+INFO:root:check user:POST /api/blogs/001518255726922a72e4d23b455444c92892619a0dbd0ac000/delete
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255726922a72e4d23b455444c92892619a0dbd0ac000', 'request': <Request POST /api/blogs/001518255726922a72e4d23b455444c92892619a0dbd0ac000/delete >}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: delete from `blogs` where `id`=?
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:55 +0000] "POST /api/blogs/001518255726922a72e4d23b455444c92892619a0dbd0ac000/delete HTTP/1.0" 200 217 "http://192.168.28.129/manage/blogs?t=1518664977949" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:55 +0000] "GET /manage/blogs?t=1518664977949&t=1518664980300 HTTP/1.0" 200 6128 "http://192.168.28.129/manage/blogs?t=1518664977949" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 5
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:56 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2789 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/blogs/001518255685543613cbcf00e464feea18ff1c25417ab71000/delete
+INFO:root:check user:POST /api/blogs/001518255685543613cbcf00e464feea18ff1c25417ab71000/delete
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518255685543613cbcf00e464feea18ff1c25417ab71000', 'request': <Request POST /api/blogs/001518255685543613cbcf00e464feea18ff1c25417ab71000/delete >}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: delete from `blogs` where `id`=?
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:58 +0000] "POST /api/blogs/001518255685543613cbcf00e464feea18ff1c25417ab71000/delete HTTP/1.0" 200 217 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:58 +0000] "GET /manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590 HTTP/1.0" 200 6128 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 4
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:22:58 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2463 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/blogs/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000/delete
+INFO:root:check user:POST /api/blogs/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000/delete
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000', 'request': <Request POST /api/blogs/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000/delete >}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: delete from `blogs` where `id`=?
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:00 +0000] "POST /api/blogs/0015182551625333a9c6211743b41daaab1ccef4bbc5c7e000/delete HTTP/1.0" 200 217 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:00 +0000] "GET /manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943 HTTP/1.0" 200 6128 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 3
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:00 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 2126 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/blogs/00151825511824450d6a54907c54a3bb5a48a39eb564c09000/delete
+INFO:root:check user:POST /api/blogs/00151825511824450d6a54907c54a3bb5a48a39eb564c09000/delete
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '00151825511824450d6a54907c54a3bb5a48a39eb564c09000', 'request': <Request POST /api/blogs/00151825511824450d6a54907c54a3bb5a48a39eb564c09000/delete >}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: delete from `blogs` where `id`=?
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:02 +0000] "POST /api/blogs/00151825511824450d6a54907c54a3bb5a48a39eb564c09000/delete HTTP/1.0" 200 217 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:02 +0000] "GET /manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943&t=1518664987137 HTTP/1.0" 200 6128 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 2
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:02 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 1800 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943&t=1518664987137" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/blogs/001518254630254c4293492d77843869434bb3bad5f361f000/delete
+INFO:root:check user:POST /api/blogs/001518254630254c4293492d77843869434bb3bad5f361f000/delete
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518254630254c4293492d77843869434bb3bad5f361f000', 'request': <Request POST /api/blogs/001518254630254c4293492d77843869434bb3bad5f361f000/delete >}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: delete from `blogs` where `id`=?
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:04 +0000] "POST /api/blogs/001518254630254c4293492d77843869434bb3bad5f361f000/delete HTTP/1.0" 200 217 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943&t=1518664987137" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:04 +0000] "GET /manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943&t=1518664987137&t=1518664989302 HTTP/1.0" 200 6128 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943&t=1518664987137" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:05 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 1448 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943&t=1518664987137&t=1518664989302" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/comments
+INFO:root:check user:GET /manage/comments
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:07 +0000] "GET /manage/comments HTTP/1.0" 200 5998 "http://192.168.28.129/manage/blogs?t=1518664977949&t=1518664980300&t=1518664982590&t=1518664984943&t=1518664987137&t=1518664989302" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/comments
+INFO:root:check user:GET /api/comments
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `comments`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:07 +0000] "GET /api/comments?page=1 HTTP/1.0" 200 693 "http://192.168.28.129/manage/comments" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:POST /api/comments/001518442258709fc1cfd2fa5ff4398980dbfba7b714fee000/delete
+INFO:root:check user:POST /api/comments/001518442258709fc1cfd2fa5ff4398980dbfba7b714fee000/delete
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:15 +0000] "POST /api/comments/001518442258709fc1cfd2fa5ff4398980dbfba7b714fee000/delete HTTP/1.0" 404 173 "http://192.168.28.129/manage/comments" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/comments
+INFO:root:check user:GET /manage/comments
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:31 +0000] "GET /manage/comments HTTP/1.0" 200 5998 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/comments
+INFO:root:check user:GET /api/comments
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `comments`
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:31 +0000] "GET /api/comments?page=1 HTTP/1.0" 200 319 "http://192.168.28.129/manage/comments" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage
+INFO:root:check user:GET /manage
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:36 +0000] "GET /manage HTTP/1.0" 302 190 "http://192.168.28.129/manage/comments" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /manage/blogs
+INFO:root:check user:GET /manage/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:36 +0000] "GET /manage/blogs HTTP/1.0" 200 6128 "http://192.168.28.129/manage/comments" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /api/blogs
+INFO:root:check user:GET /api/blogs
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'page': '1'}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:36 +0000] "GET /api/blogs?page=1 HTTP/1.0" 200 1448 "http://192.168.28.129/manage/blogs" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:45 +0000] "GET / HTTP/1.0" 200 4738 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000
+INFO:root:check user:GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518664949024f03a77ee5d7c41a382b852f5631b4834000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:23:56 +0000] "GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000 HTTP/1.0" 200 6787 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:32:39 +0000] "GET / HTTP/1.0" 200 4739 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000
+INFO:root:check user:GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518664949024f03a77ee5d7c41a382b852f5631b4834000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:03:32:41 +0000] "GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000 HTTP/1.0" 200 6788 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000
+INFO:root:check user:GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000
+INFO:root:SQL: select `id`,`email`, `image`, `created_at`, `admin`, `passwd`, `name` from `users` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:set current user:461547449@qq.com
+INFO:root:Response handler ...
+INFO:root:call with args:{'id': '001518664949024f03a77ee5d7c41a382b852f5631b4834000'}
+INFO:root:SQL: select `id`,`name`, `summary`, `content`, `created_at`, `user_name`, `user_id`, `user_image` from `blogs` where `id`=?
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`content`, `user_name`, `created_at`, `blog_id`, `user_id`, `user_image` from `comments` where blog_id=? order by created_at desc
+INFO:root:rows returned: 0
+INFO:aiohttp.access:127.0.0.1 [15/Feb/2018:07:01:00 +0000] "GET /blog/001518664949024f03a77ee5d7c41a382b852f5631b4834000 HTTP/1.0" 200 6787 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:found model:User(table:users)
+INFO:root:found mapping:email==><StringField,varchar(50):None>
+INFO:root:found mapping:image==><StringField,varchar(500):None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:passwd==><StringField,varchar(50):None>
+INFO:root:found mapping:admin==><BooleanField,boolean:None>
+INFO:root:found model:Blog(table:blogs)
+INFO:root:found mapping:user_image==><StringField,varchar(500):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:summary==><StringField,varchar(200):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found model:Comment(table:comments)
+INFO:root:found mapping:user_image==><StringField,varchar(50):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:blog_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root: create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path /srv/awesome_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_comment(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage => manage()
+INFO:root:add route GET /manage/blogs => manage_blog(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome_blog/www/static
+INFO:root:server started at http://0.0.0.0:9000
+INFO:root:found model:User(table:users)
+INFO:root:found mapping:admin==><BooleanField,boolean:None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:email==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:image==><StringField,varchar(500):None>
+INFO:root:found mapping:passwd==><StringField,varchar(50):None>
+INFO:root:found model:Blog(table:blogs)
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:summary==><StringField,varchar(200):None>
+INFO:root:found mapping:user_image==><StringField,varchar(500):None>
+INFO:root:found model:Comment(table:comments)
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:blog_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(50):None>
+INFO:root: create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path /srv/awesome_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_comment(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage => manage()
+INFO:root:add route GET /manage/blogs => manage_blog(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome_blog/www/static
+INFO:root:server started at http://0.0.0.0:9000
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `user_id`, `content`, `created_at`, `user_name`, `summary`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:03 +0000] "GET / HTTP/1.0" 200 4428 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/css/awesome.css
+INFO:root:check user:GET /static/css/awesome.css
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:03 +0000] "GET /static/css/awesome.css HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/jquery.min.js
+INFO:root:check user:GET /static/js/jquery.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:03 +0000] "GET /static/js/jquery.min.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/sha1.min.js
+INFO:root:check user:GET /static/js/sha1.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:03 +0000] "GET /static/js/sha1.min.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/sticky.min.js
+INFO:root:check user:GET /static/js/sticky.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:03 +0000] "GET /static/js/sticky.min.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/vue.min.js
+INFO:root:check user:GET /static/js/vue.min.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:03 +0000] "GET /static/js/vue.min.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/js/awesome.js
+INFO:root:check user:GET /static/js/awesome.js
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:03 +0000] "GET /static/js/awesome.js HTTP/1.0" 304 141 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:check user:GET /static/fonts/fontawesome-webfont.woff2
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:03 +0000] "GET /static/fonts/fontawesome-webfont.woff2 HTTP/1.0" 200 77360 "http://192.168.28.129/static/css/uikit.min.css" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /favicon.ico
+INFO:root:check user:GET /favicon.ico
+INFO:root:Response handler ...
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:04:25:04 +0000] "GET /favicon.ico HTTP/1.0" 404 173 "http://192.168.28.129/" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:Request:GET /
+INFO:root:check user:GET /
+INFO:root:Response handler ...
+INFO:root:call with args:{}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:rows returned: 1
+INFO:root:SQL: select `id`,`name`, `user_id`, `content`, `created_at`, `user_name`, `summary`, `user_image` from `blogs` order by created_at desc limit ?, ?
+INFO:root:rows returned: 1
+INFO:aiohttp.access:127.0.0.1 [16/Feb/2018:11:16:27 +0000] "GET / HTTP/1.0" 200 4428 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+INFO:root:found model:User(table:users)
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:image==><StringField,varchar(500):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:admin==><BooleanField,boolean:None>
+INFO:root:found mapping:passwd==><StringField,varchar(50):None>
+INFO:root:found mapping:email==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found model:Blog(table:blogs)
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:summary==><StringField,varchar(200):None>
+INFO:root:found mapping:user_image==><StringField,varchar(500):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found model:Comment(table:comments)
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:blog_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root: create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path /srv/awesome_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_comment(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage => manage()
+INFO:root:add route GET /manage/blogs => manage_blog(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome_blog/www/static
+INFO:root:server started at http://0.0.0.0:9000
+INFO:root:found model:User(table:users)
+INFO:root:found mapping:email==><StringField,varchar(50):None>
+INFO:root:found mapping:image==><StringField,varchar(500):None>
+INFO:root:found mapping:passwd==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:admin==><BooleanField,boolean:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found model:Blog(table:blogs)
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:summary==><StringField,varchar(200):None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:user_image==><StringField,varchar(500):None>
+INFO:root:found model:Comment(table:comments)
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:blog_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(50):None>
+INFO:root: create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path /srv/awesome_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_comment(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage => manage()
+INFO:root:add route GET /manage/blogs => manage_blog(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome_blog/www/static
+INFO:root:server started at http://0.0.0.0:9000
+INFO:root:found model:User(table:users)
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:email==><StringField,varchar(50):None>
+INFO:root:found mapping:admin==><BooleanField,boolean:None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:image==><StringField,varchar(500):None>
+INFO:root:found mapping:passwd==><StringField,varchar(50):None>
+INFO:root:found model:Blog(table:blogs)
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:summary==><StringField,varchar(200):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(500):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found model:Comment(table:comments)
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:blog_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(50):None>
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root: create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path /srv/awesome_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_comment(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage => manage()
+INFO:root:add route GET /manage/blogs => manage_blog(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome_blog/www/static
+INFO:root:server started at http://0.0.0.0:9000
+INFO:root:found model:User(table:users)
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:passwd==><StringField,varchar(50):None>
+INFO:root:found mapping:email==><StringField,varchar(50):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:image==><StringField,varchar(500):None>
+INFO:root:found mapping:admin==><BooleanField,boolean:None>
+INFO:root:found model:Blog(table:blogs)
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:summary==><StringField,varchar(200):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(500):None>
+INFO:root:found mapping:name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root:found model:Comment(table:comments)
+INFO:root:found mapping:content==><TextField,text:None>
+INFO:root:found mapping:created_at==><FloatField,real:None>
+INFO:root:found mapping:id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_name==><StringField,varchar(50):None>
+INFO:root:found mapping:user_image==><StringField,varchar(50):None>
+INFO:root:found mapping:blog_id==><StringField,varchar(50):None>
+INFO:root:found mapping:user_id==><StringField,varchar(50):None>
+INFO:root: create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path /srv/awesome_blog/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_comment(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage => manage()
+INFO:root:add route GET /manage/blogs => manage_blog(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome_blog/www/static
+INFO:root:server started at http://0.0.0.0:9000

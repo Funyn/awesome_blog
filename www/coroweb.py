@@ -5,7 +5,7 @@
 import asyncio,os,inspect,logging,functools
 from urllib import parse
 from aiohttp import web
-from www.apis import APIError
+from apis import APIError
 
 def get(path):
     """
@@ -75,7 +75,7 @@ def has_request_arg(fn):
             continue
         if found and (param.kind != inspect.Parameter.VAR_POSITIONAL and param.kind != inspect.Parameter.KEYWORD_ONLY and param.kind != inspect.Parameter.VAR_KEYWORD):
             raise ValueError('request parameter must be the last name parameter in function:%s%s'%(fn.__name__,str(sig)))
-        return found
+    return found
 
 class RequestHandler(object):
 
@@ -89,7 +89,6 @@ class RequestHandler(object):
         self._required_kw_args = get_required_kw_args(fn)
 
     async def __call__(self,request):
-        # self.request = request
         kw = None
         if self._has_var_kw_arg or self._has_named_kw_args or self._required_kw_args:
             if request.method == 'POST':
@@ -139,7 +138,6 @@ class RequestHandler(object):
                     return web.HTTPBadRequest()
         logging.info('call with args:%s'%str(kw))
         try:
-            kw['request'] = request
             r = await  self._func(**kw)
             return r
         except APIError as e:
